@@ -1,0 +1,13 @@
+
+-   Gift card REST API expects receiving the card number and authorization token.
+    An attacker can receive this information by a simple man in the middle attack or
+    by brute force to use an existing giftcard
+
+-   To prevent this we can follow the below steps:
+    i) Prevent brute force by adding a rate limiter
+    ii) Add security headers in response, input and content type validation
+    iii) Maintain information regarding which user is associated to an authentication token in the database
+        to allow the server to verify the requests it receives. It also helps store
+
+
+

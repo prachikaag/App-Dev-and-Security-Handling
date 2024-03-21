@@ -1,0 +1,22 @@
+Please follow the steps below to add Prometheus monitoring to cluster
+
+1. Install Prometheus using helm
+    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+    helm repo update
+    helm upgrade -i prometheus prometheus-community/prometheus
+
+2. In the default namespace create a cluster role for promethus.
+    kubectl create -f cluster_role.yaml
+
+3. To Externalize Prometheus Configurations we create configmaps, and add scraping job for the port "proxy:8080"
+    kubectl create -f config_map.yaml
+
+4. Finally, Deploy prometheus.
+    kubectl create  -f prometheus_deployment.yaml 
+
+5. We can access dashboard via :-
+    
+    kubectl get pods
+    kubectl port-forward pod_name 9292:9090 -n default
+    
+    in browser, open localhost:9292
